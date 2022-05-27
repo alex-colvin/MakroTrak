@@ -544,6 +544,151 @@
 			]
 		},
 		{
+			"name": "Daily Totals",
+			"item": [
+				{
+					"name": "Get_All_Consumed_Foods",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MDcyLCJpYXQiOjE2NTM2NjUwNzIsImp0aSI6ImViMWNkOWI1OWY3MTRjNDVhNWU5Yzk4Y2M3YjAzZmFhIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.9PJCg4sXW5K0wXczFflR3I9fVRJagIwWrNRbckIG7mk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/daily_totals/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"daily_totals",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Daily_Total",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"food_id\": 4,\r\n    \"date\": \"2022-05-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/daily_totals/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"daily_totals",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit_Daily_Total",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTUwNDMyLCJpYXQiOjE2NTM2ODY0MzIsImp0aSI6IjRmMTc2YWMwOTAwZTQwMTY5ZTk2ZTM2NmE1MjI3YjM0IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.vn4BRS2AzeiHtWjcLlYjZEHtc7YSwtYbQt5Li6na_YY",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"calories\": 1337,\r\n    \"water\": 32,\r\n    \"weight\": 180,\r\n    \"calories_burned\": 555,\r\n    \"date\": \"2022-05-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/daily_totals/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"daily_totals",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Water_Entry",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/daily_totals/6/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"daily_totals",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Authentication",
 			"item": [
 				{
