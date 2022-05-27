@@ -254,6 +254,151 @@
 			]
 		},
 		{
+			"name": "Weight",
+			"item": [
+				{
+					"name": "Get_All_Weight_Entries",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MDcyLCJpYXQiOjE2NTM2NjUwNzIsImp0aSI6ImViMWNkOWI1OWY3MTRjNDVhNWU5Yzk4Y2M3YjAzZmFhIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.9PJCg4sXW5K0wXczFflR3I9fVRJagIwWrNRbckIG7mk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/weight/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"weight",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Weight_Entry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\": 35,\r\n    \"date\": \"2022-05-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/weight/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"weight",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit_Weight_Entry",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\": 65,\r\n    \"date\": \"2022-05-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/weight/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"weight",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Weight_Entry",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/weight/6/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"weight",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Exercise",
 			"item": [
 				{

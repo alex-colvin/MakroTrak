@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'water',
     'exercise',
     'consumed_foods',
-    'daily_totals'
+    'daily_totals',
+    'weight'
 ]
 
 MIDDLEWARE = [

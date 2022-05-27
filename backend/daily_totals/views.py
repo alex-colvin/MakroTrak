@@ -11,7 +11,7 @@ from consumed_foods.serializers import ConsumedFoodSerializer
 from django.db.models import Sum
 from water.models import Water
 from exercise.models import Exercise
-# from weight.models import Weight
+from weight.models import Weight
 
 @api_view(['GET','POST'])
 @permission_classes([IsAuthenticated])
@@ -29,9 +29,9 @@ def user_totals(request):
         total_h2o = water['ounces__sum']
         ex_cal = Exercise.objects.filter(date=date).aggregate(Sum('calories'))
         total_ex_cal = ex_cal['calories__sum']
-        # weight_row = Weight.objects.filter(date=date)
-        # weight = weight_row.weight
-        serializer = DailyTotalsSerializer(data={'calories': total_cal,'water':total_h2o,'weight':180,'calories_burned':total_ex_cal,'date':date})
+        weight_row = Weight.objects.filter(date=date).values('weight')
+        weight = weight_row[0]['weight']
+        serializer = DailyTotalsSerializer(data={'calories': total_cal,'water':total_h2o,'weight':weight,'calories_burned':total_ex_cal,'date':date})
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
