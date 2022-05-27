@@ -23,7 +23,7 @@ def user_foods(request):
     elif request.method == 'GET':
         foods = Food.objects.filter(user_id=request.user.id)
         serializer = FoodSerializer(foods, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])

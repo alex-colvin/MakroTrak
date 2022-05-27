@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'cars.apps.CarsConfig',  # This app is for example use only
     'foods',
     'water',
-    'exercise'
+    'exercise',
+    'consumed_foods'
 ]
 
 MIDDLEWARE = [

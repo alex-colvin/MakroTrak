@@ -22,7 +22,7 @@ def user_exercise(request):
     elif request.method == 'GET':
         exercises = Exercise.objects.filter(user_id=request.user.id)
         serializer = ExerciseSerializer(exercises, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])
