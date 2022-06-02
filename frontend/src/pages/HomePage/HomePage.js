@@ -8,8 +8,9 @@ import DailyMacros from "../../components/DailyMacros/DailyMacros";
 import WaterEntry from "../../components/WaterEntry/WaterEntry";
 import WeightEntry from "../../components/WeightEntry/WeightEntry";
 import ExerciseEntry from "../../components/ExerciseEntry/ExerciseEntry";
-import SaveFood from "../../components/SaveFoodForm/SaveFoodForm";
-import SaveFoodForm from "../../components/SaveFoodForm/SaveFoodForm";
+import { Link } from "react-router-dom";
+
+
 
 const HomePage = (props) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -22,7 +23,7 @@ const HomePage = (props) => {
     <div>
       <DailyMacros></DailyMacros>
       <ChartTracker></ChartTracker>
-      <SaveFoodForm ></SaveFoodForm>
+      <Link to="/addfood">Click to Add Food</Link>
       <WaterEntry></WaterEntry>
       <WeightEntry></WeightEntry>
       <ExerciseEntry></ExerciseEntry>

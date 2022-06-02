@@ -28,7 +28,6 @@ const SaveFoodForm = (props) => {
         saveFood,
     );
     
-
     async function saveFood(){
         try{
           let response = await axios.post(`${URL_HOST}/foods/`, formData, {
