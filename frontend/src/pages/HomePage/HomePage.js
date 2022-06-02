@@ -3,6 +3,12 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 
 import axios from "axios";
+import ChartTracker from "../../components/ChartTracker/ChartTracker";
+import DailyMacros from "../../components/DailyMacros/DailyMacros";
+import WaterEntry from "../../components/WaterEntry/WaterEntry";
+import WeightEntry from "../../components/WeightEntry/WeightEntry";
+import ExerciseEntry from "../../components/ExerciseEntry/ExerciseEntry";
+import SaveFood from "../../components/SaveFoodForm/SaveFoodForm";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -11,32 +17,43 @@ const HomePage = () => {
   const [user, token] = useAuth();
   const [cars, setCars] = useState([]);
 
-  useEffect(() => {
-    const fetchCars = async () => {
-      try {
-        let response = await axios.get("http://127.0.0.1:8000/api/cars/", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        });
-        setCars(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    fetchCars();
-  }, [token]);
-  return (
-    <div className="container">
-      <h1>Home Page for {user.username}!</h1>
-      {cars &&
-        cars.map((car) => (
-          <p key={car.id}>
-            {car.year} {car.make} {car.model}
-          </p>
-        ))}
+  return(
+    <div>
+      <DailyMacros></DailyMacros>
+      <ChartTracker></ChartTracker>
+      <SaveFood></SaveFood>
+      <WaterEntry></WaterEntry>
+      <WeightEntry></WeightEntry>
+      <ExerciseEntry></ExerciseEntry>
     </div>
-  );
+  )
+
+  // useEffect(() => {
+  //   const fetchCars = async () => {
+  //     try {
+  //       let response = await axios.get("http://127.0.0.1:8000/api/cars/", {
+  //         headers: {
+  //           Authorization: "Bearer " + token,
+  //         },
+  //       });
+  //       setCars(response.data);
+  //     } catch (error) {
+  //       console.log(error.message);
+  //     }
+  //   };
+  //   fetchCars();
+  // }, [token]);
+//   return (
+//     <div className="container">
+//       <h1>Home Page for {user.username}!</h1>
+//       {cars &&
+//         cars.map((car) => (
+//           <p key={car.id}>
+//             {car.year} {car.make} {car.model}
+//           </p>
+//         ))}
+//     </div>
+//   );
 };
 
 export default HomePage;

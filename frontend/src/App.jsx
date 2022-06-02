@@ -13,8 +13,13 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import axios from "axios";
 
 function App() {
+
+
+
+
   return (
     <div>
       <Navbar />
