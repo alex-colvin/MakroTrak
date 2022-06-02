@@ -39,8 +39,9 @@ const WaterEntry = (props) => {
     
     return (
         <div>
+            <h2>Water</h2>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='ounces' placeholder='How many ounces did you drink?' value={formData.ounces} onChange={handleInputChange} />
+                <input type='text' name='ounces' placeholder='Enter oz consumed' value={formData.ounces} onChange={handleInputChange} />
                 <button type="submit" >ADD</button>
             </form>
         </div>
