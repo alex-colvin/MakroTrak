@@ -10,13 +10,16 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import useAuth from "./hooks/useAuth";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
+import { URL_HOST } from "./urlHost";
+import { useState } from "react/cjs/react.production.min";
 
 function App() {
-
+  const [user, token] = useAuth()
 
 
 

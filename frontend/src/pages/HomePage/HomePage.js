@@ -9,8 +9,9 @@ import WaterEntry from "../../components/WaterEntry/WaterEntry";
 import WeightEntry from "../../components/WeightEntry/WeightEntry";
 import ExerciseEntry from "../../components/ExerciseEntry/ExerciseEntry";
 import SaveFood from "../../components/SaveFoodForm/SaveFoodForm";
+import SaveFoodForm from "../../components/SaveFoodForm/SaveFoodForm";
 
-const HomePage = () => {
+const HomePage = (props) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
@@ -21,7 +22,7 @@ const HomePage = () => {
     <div>
       <DailyMacros></DailyMacros>
       <ChartTracker></ChartTracker>
-      <SaveFood></SaveFood>
+      <SaveFoodForm ></SaveFoodForm>
       <WaterEntry></WaterEntry>
       <WeightEntry></WeightEntry>
       <ExerciseEntry></ExerciseEntry>

@@ -23,11 +23,12 @@ let initialValues = {
 const SaveFoodForm = (props) => {
     
     const [user, token] = useAuth();
-    const [formData, handleInputChange, handleSubmit] = useCustomForm(
+    const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         initialValues,
-        saveFood
+        saveFood,
     );
     
+
     async function saveFood(){
         try{
           let response = await axios.post(`${URL_HOST}/foods/`, formData, {
@@ -35,6 +36,9 @@ const SaveFoodForm = (props) => {
               Authorization: 'Bearer ' + token
             }
           })
+          if(response.status === 201){
+            reset() 
+           }
         } catch (error) {
           console.log(error.message);
         }
