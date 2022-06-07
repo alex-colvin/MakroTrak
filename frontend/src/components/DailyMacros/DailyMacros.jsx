@@ -7,49 +7,18 @@ import { URL_HOST } from "../../urlHost";
 
 const DailyMacros = (props) => {
     const [user, token] = useAuth();
-    const [data, setData] = useState([["Macros","Calories","Fats","Carbs","Proteins"]]);
-    const [dailyMacros, setDailyMacros] = useState();
-    //get today's totals in calories, fats, carbs, protein
-    
-    useState(() =>{
-        getDailyMacros()
-        console.log("logging get daily macros from DMcomponent")
-        })
-
-    async function getDailyMacros() {
-        try{
-          console.log(URL_HOST)
-          let response = await axios.get(`${URL_HOST}/consumed_foods/`, {
-            headers: {
-              Authorization: 'Bearer ' + token
-            }
-          })
-            if(response.status === 200){
-              console.log([response.data.cals, response.data.fats, response.data.carbs, response.data.proteins])
-              console.log(`logging data ${data}`)
-              setData([...data, [' ',response.data.cals, response.data.fats, response.data.carbs, response.data.proteins]])
-              console.log(dailyMacros)
-            } 
-          } catch (error) {
-              console.log(error.message)
-            }
-        }
+    const [data, setData] = useState([]);
 
         useEffect(() => {
-            console.log(`DM trigger${dailyMacros}`)
-            setData({...data, dailyMacros})
-          },[dailyMacros])
+            console.log(`DM trigger${props.dailyWater}`)
+            setData([["Daily Goals",`Water ${props.dailyWater.toFixed(0)} of 100oz`,`Calories ${(props.dailyCals*2000/100).toFixed(0)} of 2000 cal`,`Fats ${(props.dailyFats*66/100).toFixed(0)} of 66g`,`Carbs ${(props.dailyCarbs*225/100).toFixed(0)} of 225g`,`Proteins ${(props.dailyProteins*122/100).toFixed(0)}g of 122g`], [' ',props.dailyWater, props.dailyCals, props.dailyFats, props.dailyCarbs, props.dailyProteins]])
+          },[props.dailyCals, props.dailyFats, props.dailyProteins, props.dailyCarbs, props.dailyWater])
     
     const options = {
-        chart: {
             title: "Daily Macros",
-        },
-        width: 500,
-        height: 300,
-        viewWindow:{
-            max:200,
-            min:-100
-        },
+            hAxis: { title: "Daily Goals", viewWindow: { min: 0, max: 15 } },
+            vAxis: { title: "Percent Complete", viewWindow: { min: 0, max: 125 } },
+            
     }
 
     return ( 
@@ -59,8 +28,8 @@ const DailyMacros = (props) => {
                     data={data}
                     options={options}
                     width="100%"
-                    height="400px"
-                    legendToggle
+                    height="100%"
+                    title="Daily Macros"
                 />
         </div>
      );

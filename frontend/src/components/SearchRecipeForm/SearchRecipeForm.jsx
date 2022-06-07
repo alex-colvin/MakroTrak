@@ -37,7 +37,7 @@ const SearchRecipeForm = (props) => {
             props.setSearchResults('')
             props.setSearchSavedResults('')
             console.log(response.data.hits)
-            reset('') 
+            setSearchQuery('') 
            }
         } catch (error) {
           console.log(error.message);

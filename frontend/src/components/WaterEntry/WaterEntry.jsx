@@ -30,6 +30,7 @@ const WaterEntry = (props) => {
                 }
               })
               if(response.status === 201){
+                props.getDailyWater()
                 reset() 
                }
         } catch (error) {

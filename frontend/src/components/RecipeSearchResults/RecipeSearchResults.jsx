@@ -52,15 +52,15 @@ const RecipeSearchResults = (props) => {
               }
         })
       }
-
+      //Sets the form date to post to database. Divides total recipe quantities by the number of servings(food.recipe.yield)
       function setNutritionValues(food){
           formData.name = food.recipe.label
-          formData.cal = food.recipe.calories
-          formData.fat = food.recipe.totalNutrients.FAT.quantity
-          formData.carb = food.recipe.totalNutrients.CHOCDF.quantity
-          formData.sugar = food.recipe.totalNutrients.SUGAR.quantity
-          formData.fiber = food.recipe.totalNutrients.FIBTG.quantity
-          formData.protein = food.recipe.totalNutrients.PROCNT.quantity
+          formData.cal = (food.recipe.calories / food.recipe.yield)
+          formData.fat = (food.recipe.totalNutrients.FAT.quantity / food.recipe.yield)
+          formData.carb = (food.recipe.totalNutrients.CHOCDF.quantity / food.recipe.yield)
+          formData.sugar = (food.recipe.totalNutrients.SUGAR.quantity / food.recipe.yield)
+          formData.fiber = (food.recipe.totalNutrients.FIBTG.quantity / food.recipe.yield)
+          formData.protein = (food.recipe.totalNutrients.PROCNT.quantity / food.recipe.yield)
           formData.servings = food.recipe.yield
           formData.url = food.recipe.url
           saveFood()          
@@ -72,6 +72,7 @@ const RecipeSearchResults = (props) => {
                     <thead>
                         <tr>
                             <th className='col-4'>Name</th>
+                            <th className='col-1'>Total Cal</th>
                             <th className='col-1'>Fats</th>
                             <th className='col-1'>Protein</th>
                             <th className='col-1'>Carbs</th>
@@ -87,6 +88,7 @@ const RecipeSearchResults = (props) => {
                                 return(
                                     <tr key={key}>
                                         <td>{food.recipe.label}</td>
+                                        <td>{food.recipe.calories.toFixed(0)}</td>
                                         <td>{food.recipe.totalNutrients.FAT.quantity.toFixed(0)}</td>
                                         <td>{food.recipe.totalNutrients.PROCNT.quantity.toFixed(0)}</td>
                                         <td>{food.recipe.totalNutrients.CHOCDF.quantity.toFixed(0)}</td>

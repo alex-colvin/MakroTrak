@@ -4,7 +4,7 @@ import useCustomForm from '../../hooks/useCustomForm';
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import { URL_HOST } from '../../urlHost'
-import SearchResults from '../SearchResults/SearchResults'
+
 
 
 let initialValues = {
@@ -23,18 +23,23 @@ const SearchFoodForm = (props) => {
     const [user, token] = useAuth();
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         initialValues,
-        searchNewFood,
+        searchSavedFoods,
     );
-    const [searchResults, setSearchResults] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     
 // This function sends a GET request to the USDA API 
-    async function searchNewFood(){
+    async function searchSavedFoods(){
         try{
-          let response = await axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&pageSize=25&api_key=${process.env.REACT_APP_USDA_API_KEY}`)
+          let response = await axios.get(`${URL_HOST}/foods/?query=${searchQuery}`,{
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+            })
           if(response.status === 200){
-            setSearchResults(response.data.foods)
-            reset() 
+            props.setSearchSavedResults(response.data)
+            props.setSearchRecipeResults('')
+            props.setSearchResults('')
+            setSearchQuery('')
            }
         } catch (error) {
           console.log(error.message);
@@ -53,10 +58,7 @@ const SearchFoodForm = (props) => {
                         <button className='btn btn-outline-danger btn-sm' type="submit" >Search</button>
                     </div>
                 </div>
-            </form>
-            {searchResults &&        
-              <SearchResults searchResults={searchResults} saveFood={props.saveFood} /> 
-            }               
+            </form>               
         </div>
      );
 }

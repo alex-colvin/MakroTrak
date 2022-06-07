@@ -23,7 +23,7 @@ const HomePage = (props) => {
     <div className="container">
       <div className="row">
         <div  className="col-6">
-          <DailyMacros getDailyMacros={props.getDailyMacros} setDailyMacros={props.setDailyMacros} dailyMacros={props.dailyMacros} />
+          <DailyMacros dailyCals={props.dailyCals} dailyCarbs={props.dailyCarbs} dailyFats={props.dailyFats} dailyProteins ={props.dailyProteins} dailyWater={props.dailyWater} />
         </div>
         <div  className="col-6">
           <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
@@ -32,7 +32,7 @@ const HomePage = (props) => {
       <div className="container">
         <div className="row" >
           <div className="col-3">
-            <WaterEntry></WaterEntry>
+            <WaterEntry getDailyWater={props.getDailyWater}></WaterEntry>
           </div>
           <div className="col-3">
             <WeightEntry></WeightEntry>

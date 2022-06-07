@@ -5,6 +5,7 @@ import SearchSavedFoodForm from "../../components/SearchSavedFoodsForm/SearchSav
 import SearchResults from "../../components/SearchResults/SearchResults";
 import React, { useEffect, useState } from 'react';
 import RecipeSearchResults from "../../components/RecipeSearchResults/RecipeSearchResults";
+import SavedFoodSearchResults from "../../components/SavedFoodSearchResults/SavedFoodSearchResults";
 
 
 const SearchPage = (props) => {
@@ -32,8 +33,13 @@ const SearchPage = (props) => {
                 </div>
             }
             {searchRecipeResults &&        
-                <div className="m-">
+                <div>
                 <RecipeSearchResults searchResults={searchRecipeResults} saveFood={props.saveFood} />
+                </div>
+            }
+            {searchSavedResults &&        
+                <div >
+                <SavedFoodSearchResults searchResults={searchSavedResults} saveFood={props.saveFood} />
                 </div>
             }
             <CustomFoodEntry />

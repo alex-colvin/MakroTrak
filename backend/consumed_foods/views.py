@@ -27,13 +27,13 @@ def user_consumed_foods(request):
         fats = 0
         carbs = 0
         proteins = 0
-        format_date = date.strftime('%Y-%m-%d')
         consumed_foods = ConsumedFood.objects.filter(user=request.user.id, date=date)
         for food in consumed_foods:
             cals += food.food.cal
             fats += food.food.fat
             carbs += food.food.carb
             proteins += food.food.protein
+        #calculations for recommended macros based on a 2000 calorie diet
         cals = round((cals/2000)*100)
         fats = round((fats/66)*100)
         carbs = round((carbs/225)*100)

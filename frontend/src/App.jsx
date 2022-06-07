@@ -40,6 +40,16 @@ function App() {
     saveFood,
   );
   const [chartData, setChartData] = useState();
+  const [dailyCals, setDailyCals] = useState();
+  const [dailyCarbs, setDailyCarbs] = useState();
+  const [dailyFats, setDailyFats] = useState();
+  const [dailyProteins, setDailyProteins] = useState();
+  const [dailyWater, setDailyWater] = useState();
+
+  useState(() =>{
+    getDailyMacros()
+    getDailyWater()
+    })
 
   async function saveFood(){
     try{
@@ -70,6 +80,46 @@ function App() {
     }
   }
 
+  async function getDailyMacros() {
+    try{
+      console.log(URL_HOST)
+      let response = await axios.get(`${URL_HOST}/consumed_foods/`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+        if(response.status === 200){
+          // console.log([response.data.cals, response.data.fats, response.data.carbs, response.data.proteins])
+          // console.log(`logging data ${data}`)
+          // setData([...data, [' ','6',response.data.cals, response.data.fats, response.data.carbs, response.data.proteins]])
+          // console.log(dailyMacros)
+          setDailyCals(response.data.cals) 
+          setDailyCarbs(response.data.carbs)
+          setDailyFats(response.data.fats) 
+          setDailyProteins(response.data.proteins)
+        } 
+      } catch (error) {
+          console.log(error.message)
+        }
+    }
+    
+  async function getDailyWater() {
+    try{
+      console.log(URL_HOST)
+      let response = await axios.get(`${URL_HOST}/water/`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+        if(response.status === 200){
+          console.log(`water ${response.data.ounces}`)
+          setDailyWater(response.data.ounces)
+        }
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
   return (
     <div>
       <Navbar />
@@ -78,7 +128,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData}/>
+              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
             </PrivateRoute>
           }
         />
@@ -92,3 +142,5 @@ function App() {
 }
 
 export default App;
+
+
