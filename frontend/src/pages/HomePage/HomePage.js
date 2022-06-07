@@ -20,13 +20,28 @@ const HomePage = (props) => {
 
 
   return(
-    <div>
-      <DailyMacros getDailyMacros={props.getDailyMacros} setDailyMacros={props.setDailyMacros} dailyMacros={props.dailyMacros} />
-      <ChartTracker getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
-      <Link to="/addfood">Click to Add Food</Link>
-      <WaterEntry></WaterEntry>
-      <WeightEntry></WeightEntry>
-      <ExerciseEntry></ExerciseEntry>
+    <div className="container">
+      <div className="row">
+        <div  className="col-6">
+          <DailyMacros getDailyMacros={props.getDailyMacros} setDailyMacros={props.setDailyMacros} dailyMacros={props.dailyMacros} />
+        </div>
+        <div  className="col-6">
+          <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
+        </div>
+      </div>
+      <div className="container">
+        <div className="row" >
+          <div className="col-3">
+            <WaterEntry></WaterEntry>
+          </div>
+          <div className="col-3">
+            <WeightEntry></WeightEntry>
+          </div>
+          <div className="col-6">
+            <ExerciseEntry></ExerciseEntry>
+          </div>
+        </div>
+      </div>
     </div>
   )
 };

@@ -57,18 +57,41 @@ const SaveFoodForm = (props) => {
 
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type='text' name='name' placeholder='Enter Name of Food' value={formData.name} onChange={handleInputChange} />
-                <input type='text' name='cal' placeholder='Enter Calories' value={formData.cal} onChange={handleInputChange} />
-                <input type='text' name='fat' placeholder='Enter Fats' value={formData.fat} onChange={handleInputChange} />
-                <input type='text' name='carb' placeholder='Enter Carbohydrates' value={formData.carb} onChange={handleInputChange} />
-                <input type='text' name='sugar' placeholder='Enter Sugars' value={formData.sugar} onChange={handleInputChange} />
-                <input type='text' name='fiber' placeholder='Enter Fiber' value={formData.fiber} onChange={handleInputChange} />
-                <input type='text' name='protein' placeholder='Enter Protein' value={formData.protein} onChange={handleInputChange} />
-                <input type='text' name='servings' placeholder='Enter # of Servings' value={formData.servings} onChange={handleInputChange} />
-                <button type="submit" >ADD</button>
-            </form>
+        <div className='container'>
+          <h2 className='m-4'>Custom Food Entry</h2>
+          <form onSubmit={handleSubmit}>
+              <div className='row m-2'>
+                <div className='form-group col-8'>
+                  <input className='form-control' type='text' name='name' placeholder='Enter Name of Food' value={formData.name} onChange={handleInputChange} />
+                </div>
+                <div className='col-2'>
+                  <input className='form-control' type='text' name='cal' placeholder='Enter Calories' value={formData.cal} onChange={handleInputChange} />
+                </div>
+                <div className='col-2'>
+                  <input className='form-control' type='text' name='fat' placeholder='Enter Fats' value={formData.fat} onChange={handleInputChange} />
+                </div>
+              </div>
+              <div className='row m-2'>
+                <div className='col-2'>
+                  <input className='form-control' type='text' name='carb' placeholder='Enter Carbs' value={formData.carb} onChange={handleInputChange} />
+                </div>
+                <div className='col-md-2'>
+                  <input className='form-control' type='text' name='sugar' placeholder='Enter Sugars' value={formData.sugar} onChange={handleInputChange} />
+                </div>
+                <div className='col-md-2'>
+                  <input className='form-control' type='text' name='fiber' placeholder='Enter Fiber' value={formData.fiber} onChange={handleInputChange} />
+                </div>
+                <div className='col-md-2'>
+                  <input className='form-control' type='text' name='protein' placeholder='Enter Protein' value={formData.protein} onChange={handleInputChange} />
+                </div>
+                <div className='col-md-2'>
+                  <input className='form-control' type='text' name='servings' placeholder='Enter # of Servings' value={formData.servings} onChange={handleInputChange} />
+                </div>
+                <div className='col-md-2'>
+                  <button className='btn btn-outline-danger' type="submit" >ADD</button>
+                </div>
+              </div>
+          </form>
         </div>
      );
 }

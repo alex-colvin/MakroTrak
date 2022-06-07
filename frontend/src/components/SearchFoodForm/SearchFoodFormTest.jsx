@@ -19,13 +19,13 @@ let initialValues = {
     url: 'h',
 };
 
-const SearchFoodForm = (props) => {
+const SearchFoodFormTest = (props) => {
     const [user, token] = useAuth();
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         initialValues,
         searchNewFood,
     );
-    const [searchResults, setSearchResults] = useState('');
+    // const [searchResults, setSearchResults] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     
 // This function sends a GET request to the USDA API 
@@ -34,8 +34,6 @@ const SearchFoodForm = (props) => {
           let response = await axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&pageSize=25&api_key=${process.env.REACT_APP_USDA_API_KEY}`)
           if(response.status === 200){
             props.setSearchResults(response.data.foods)
-            props.setSearchRecipeResults('')
-            props.setSearchSavedResults('')
             reset() 
            }
         } catch (error) {
@@ -49,15 +47,18 @@ const SearchFoodForm = (props) => {
             <form onSubmit={handleSubmit}>
               <div class="row m-2">
                 <div className='col-9'>
-                  <input type='text' name='Search' placeholder='Food Search' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
+                  <input type='text' name='Search' placeholder='FoodSearchTEST' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
                 </div>
                 <div className='col-3'>
-                  <button className='btn btn-outline-danger btn-sm'  type="submit" >Search</button>
+                  <button className='btn btn-outline-danger btn-sm'  type="submit" >TEST</button>
                 </div>
               </div>
-            </form>              
+            </form>
+            {/* {searchResults &&        
+              // <SearchResults searchResults={searchResults} saveFood={props.saveFood} /> 
+            }                */}
         </div>
      );
 }
  
-export default SearchFoodForm;
+export default SearchFoodFormTest;

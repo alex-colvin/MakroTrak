@@ -68,16 +68,15 @@ const SearchResults = (props) => {
       
 
         return ( 
-            <div>
-                <table>
+            <div className='w-80 btn-center'>
+                <table className="text-center table table-dark table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>Key</th>
-                            <th>Name</th>
-                            <th>Brand</th>
-                            <th>Fats</th>
-                            <th>Protein</th>
-                            <th>Carbs</th>
+                            <th className='col-5'>Name</th>
+                            <th className='col-3'>Brand</th>
+                            <th className='col-2'>Fats</th>
+                            <th className='col-2'>Protein</th>
+                            <th className='col-1'>Carbs</th>
                             <th/>
                         </tr>
                     </thead>
@@ -87,7 +86,6 @@ const SearchResults = (props) => {
                                 let key = food.fdcId
                                 return(
                                     <tr key={key}>
-                                        <td>{food.fdcId}</td>
                                         <td>{food.description}</td>
                                         <td>{food.brandName}</td>
                                         <td>{food.foodNutrients[1].value}</td>

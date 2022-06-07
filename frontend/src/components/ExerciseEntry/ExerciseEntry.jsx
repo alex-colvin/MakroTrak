@@ -41,8 +41,8 @@ const ExerciseEntry = (props) => {
         <div>
             <h2>Exercise</h2>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='type' placeholder='Enter name of exercise' value={formData.type} onChange={handleInputChange} />
-                <input type='text' name='calories' placeholder='Calories Burned' value={formData.calories} onChange={handleInputChange} />
+                <input type='text' name='type' placeholder=' Enter name of exercise' value={formData.type} onChange={handleInputChange} />
+                <input type='text' name='calories' placeholder=' Calories Burned' value={formData.calories} onChange={handleInputChange} />
                 <button type="submit" >ADD</button>
             </form>
         </div>

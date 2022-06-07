@@ -44,8 +44,8 @@ const DailyMacros = (props) => {
         chart: {
             title: "Daily Macros",
         },
-        width: 900,
-        height: 500,
+        width: 500,
+        height: 300,
         viewWindow:{
             max:200,
             min:-100

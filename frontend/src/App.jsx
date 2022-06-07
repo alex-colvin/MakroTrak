@@ -19,7 +19,7 @@ import axios from "axios";
 import { URL_HOST } from "./urlHost";
 import { useState } from "react";
 import useCustomForm from "./hooks/useCustomForm"
-import { useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 let initialValues = {
   name: '',

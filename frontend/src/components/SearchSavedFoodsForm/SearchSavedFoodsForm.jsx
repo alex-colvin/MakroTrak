@@ -33,9 +33,7 @@ const SearchFoodForm = (props) => {
         try{
           let response = await axios.get(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${searchQuery}&pageSize=25&api_key=${process.env.REACT_APP_USDA_API_KEY}`)
           if(response.status === 200){
-            props.setSearchResults(response.data.foods)
-            props.setSearchRecipeResults('')
-            props.setSearchSavedResults('')
+            setSearchResults(response.data.foods)
             reset() 
            }
         } catch (error) {
@@ -47,15 +45,18 @@ const SearchFoodForm = (props) => {
     return ( 
         <div className='container'>
             <form onSubmit={handleSubmit}>
-              <div class="row m-2">
-                <div className='col-9'>
-                  <input type='text' name='Search' placeholder='Food Search' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
+                <div className='row m-2'>
+                    <div className='col-9'>
+                        <input type='text' name='Search' placeholder='Search Saved Foods' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
+                    </div>
+                    <div className='col-3'>
+                        <button className='btn btn-outline-danger btn-sm' type="submit" >Search</button>
+                    </div>
                 </div>
-                <div className='col-3'>
-                  <button className='btn btn-outline-danger btn-sm'  type="submit" >Search</button>
-                </div>
-              </div>
-            </form>              
+            </form>
+            {searchResults &&        
+              <SearchResults searchResults={searchResults} saveFood={props.saveFood} /> 
+            }               
         </div>
      );
 }
