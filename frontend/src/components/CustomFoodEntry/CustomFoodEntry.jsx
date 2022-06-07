@@ -36,11 +36,23 @@ const SaveFoodForm = (props) => {
             }
           })
           if(response.status === 201){
+            trackFood(response.data.id)
             reset() 
            }
         } catch (error) {
           console.log(error.message);
         }
+      }
+
+      async function trackFood(foodId){
+        let date = new Date();
+        console.log(`${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
+        let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+        let response = await axios.post(`${URL_HOST}/consumed_foods/`, {"food_id": foodId, "date": formatDate}, {
+            headers: {
+                Authorization: 'Bearer ' + token
+              }
+        })
       }
 
 

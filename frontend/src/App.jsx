@@ -17,8 +17,9 @@ import useAuth from "./hooks/useAuth";
 import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
 import { URL_HOST } from "./urlHost";
-import { useState } from "react/cjs/react.production.min";
+import { useState } from "react";
 import useCustomForm from "./hooks/useCustomForm"
+import { useEffect } from "react";
 
 let initialValues = {
   name: '',
@@ -38,6 +39,8 @@ function App() {
     initialValues,
     saveFood,
   );
+  const [chartData, setChartData] = useState();
+
 
   async function saveFood(){
     try{
@@ -47,12 +50,31 @@ function App() {
         }
       })
       if(response.status === 201){
-        reset() 
        }
     } catch (error) {
       console.log(error.message);
     }
   }
+
+  
+  async function getDailyTotals() {
+    try{
+      let response = await axios.get(`${URL_HOST}/daily_totals/`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+      if(response.status === 200){
+        setChartData(response.data)
+      }
+    } catch (error) {
+    console.log(error.message);
+    }
+  }
+
+  useEffect(() => {
+    getDailyTotals();
+  }, [])
 
   return (
     <div>
@@ -62,7 +84,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} />
             </PrivateRoute>
           }
         />

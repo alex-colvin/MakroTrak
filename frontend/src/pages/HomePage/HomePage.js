@@ -22,7 +22,7 @@ const HomePage = (props) => {
   return(
     <div>
       <DailyMacros></DailyMacros>
-      <ChartTracker></ChartTracker>
+      <ChartTracker getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
       <Link to="/addfood">Click to Add Food</Link>
       <WaterEntry></WaterEntry>
       <WeightEntry></WeightEntry>

@@ -33,11 +33,23 @@ const SearchResults = (props) => {
             }
           })
           if(response.status === 201){
-            reset() 
+            trackFood(response.data.id)
+            reset()
            }
         } catch (error) {
           console.log(error.message);
         }
+      }
+
+      async function trackFood(foodId){
+        let date = new Date();
+        console.log(`${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
+        let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+        let response = await axios.post(`${URL_HOST}/consumed_foods/`, {"food_id": foodId, "date": formatDate}, {
+            headers: {
+                Authorization: 'Bearer ' + token
+              }
+        })
       }
 
       function setNutritionValues(food){
@@ -53,6 +65,8 @@ const SearchResults = (props) => {
           saveFood()          
       }
 
+      
+
         return ( 
             <div>
                 <table>
@@ -64,7 +78,7 @@ const SearchResults = (props) => {
                             <th>Fats</th>
                             <th>Protein</th>
                             <th>Carbs</th>
-                            <th />
+                            <th/>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,7 +93,7 @@ const SearchResults = (props) => {
                                         <td>{food.foodNutrients[1].value}</td>
                                         <td>{food.foodNutrients[0].value}</td>
                                         <td>{food.foodNutrients[2].value}</td>
-                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Add</button></td>
+                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
                                     </tr>
                                 )
                             })}
