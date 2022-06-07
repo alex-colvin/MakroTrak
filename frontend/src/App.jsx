@@ -41,7 +41,6 @@ function App() {
   );
   const [chartData, setChartData] = useState();
 
-
   async function saveFood(){
     try{
       let response = await axios.post(`${URL_HOST}/foods/`, formData, {
@@ -55,7 +54,6 @@ function App() {
       console.log(error.message);
     }
   }
-
   
   async function getDailyTotals() {
     try{
@@ -72,10 +70,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    getDailyTotals();
-  }, [])
-
   return (
     <div>
       <Navbar />
@@ -84,7 +78,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} />
+              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData}/>
             </PrivateRoute>
           }
         />

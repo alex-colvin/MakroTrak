@@ -22,18 +22,7 @@ const ChartTracker = (props) => {
       })
       setData(tempTotals)
     }
-  },[props.chartData])
-  
-
-
-  // function setChartData(dailyTotals) {
-  //   let tempTotals = [...data];
-  //   dailyTotals.array.forEach((el) => {
-  //     tempTotals.push(el)
-  //   });
-  //   setData(tempTotals)
-  // }
-  
+  },[props.chartData])  
 
   const options = {
     chart: {
