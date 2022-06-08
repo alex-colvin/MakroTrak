@@ -33,9 +33,11 @@ const SearchRecipeForm = (props) => {
         try{
           let response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&app_id=d2bf486e&app_key=ddf0d63b2c30afa4b6919d62795f2f4c`)
           if(response.status === 200){
-            setSearchResults(response.data.hits)
+            props.setSearchRecipeResults(response.data.hits)
+            props.setSearchResults('')
+            props.setSearchSavedResults('')
             console.log(response.data.hits)
-            reset() 
+            setSearchQuery('') 
            }
         } catch (error) {
           console.log(error.message);
@@ -44,12 +46,20 @@ const SearchRecipeForm = (props) => {
 
 
     return ( 
-        <div>
+        <div className='container'>
             <form onSubmit={handleSubmit}>
-            <input type='text' name='Search' placeholder='Recipes Search' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
-                <button type="submit" >Search</button>
+            <div className='row m-2'>
+              <div className='col-9'>
+                <input type='text' name='Search' placeholder='Recipes Search' value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
+                </div>
+              <div className='col-3'>
+                <button type="submit" className='btn btn-outline-danger btn-sm'>Search</button>
+                </div>
+            </div>
             </form>
-             <RecipeSearchResults searchResults={searchResults} saveFood={props.saveFood} />;                
+            {/* {searchResults &&
+              <RecipeSearchResults searchResults={searchResults} saveFood={props.saveFood} />
+            }              */}
         </div>
      );
 }

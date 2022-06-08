@@ -9,6 +9,7 @@ import WaterEntry from "../../components/WaterEntry/WaterEntry";
 import WeightEntry from "../../components/WeightEntry/WeightEntry";
 import ExerciseEntry from "../../components/ExerciseEntry/ExerciseEntry";
 import { Link } from "react-router-dom";
+import TodaysFoods from "../../components/TodaysFoods/TodaysFoods";
 
 
 
@@ -20,13 +21,31 @@ const HomePage = (props) => {
 
 
   return(
-    <div>
-      <DailyMacros getDailyMacros={props.getDailyMacros} setDailyMacros={props.setDailyMacros} dailyMacros={props.dailyMacros} />
-      <ChartTracker getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
-      <Link to="/addfood">Click to Add Food</Link>
-      <WaterEntry></WaterEntry>
-      <WeightEntry></WeightEntry>
-      <ExerciseEntry></ExerciseEntry>
+    <div className="container">
+      <div className="row">
+        <div  className="col-6">
+          <DailyMacros dailyCals={props.dailyCals} dailyCarbs={props.dailyCarbs} dailyFats={props.dailyFats} dailyProteins ={props.dailyProteins} dailyWater={props.dailyWater} />
+        </div>
+        <div  className="col-6">
+          <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
+        </div>
+      </div>
+      {/* <div className="container"> */}
+        <div className="row" >
+          <div className="col-3">
+            <WaterEntry getDailyWater={props.getDailyWater}></WaterEntry>
+          </div>
+          <div className="col-3">
+            <WeightEntry></WeightEntry>
+          </div>
+          <div className="col-6">
+            <ExerciseEntry></ExerciseEntry>
+          </div>
+        </div>
+      {/* </div> */}
+      <div>
+        {/* <TodaysFoods todaysFoods={props.todaysFoods} setTodaysFoods={props.setTodaysFoods} /> */}
+      </div>
     </div>
   )
 };

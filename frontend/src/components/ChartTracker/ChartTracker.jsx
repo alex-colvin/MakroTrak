@@ -28,8 +28,8 @@ const ChartTracker = (props) => {
     chart: {
       title: "Fitness Data Tracker",
     },
-    width: 900,
-    height: 500,
+    width: 500,
+    height: 300,
     series: {
       // Gives each series an axis name that matches the Y-axis below.
       0: { axis: "Water" },

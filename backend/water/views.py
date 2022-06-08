@@ -7,6 +7,7 @@ from .serializers import WaterSerializer
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.http import Http404
+import datetime
 
 @api_view(['GET','POST'])
 @permission_classes([IsAuthenticated])
@@ -21,9 +22,16 @@ def user_water(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        water_entries = Water.objects.filter(user_id=request.user.id)
+        date = datetime.datetime.now()
+        ounces = 0
+        water_entries = Water.objects.filter(user_id=request.user.id, date=date)
+        for entry in water_entries:
+            ounces += entry.ounces 
+        #calcs for recommended water intake
+        ounces = round((ounces/100)*100)
+        response = {"ounces": ounces}
         serializer = WaterSerializer(water_entries, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(response, status=status.HTTP_200_OK)
 
 @api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])

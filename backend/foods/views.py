@@ -21,7 +21,11 @@ def user_foods(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        foods = Food.objects.filter(user_id=request.user.id)
+        query_param = request.query_params.get('query')
+        if query_param:            
+            foods = Food.objects.filter(user_id=request.user.id, name__contains=query_param)
+        else:
+            foods = Food.objects.filter(user_id=request.user.id)
         serializer = FoodSerializer(foods, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

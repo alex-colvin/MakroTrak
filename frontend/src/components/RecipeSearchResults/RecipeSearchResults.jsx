@@ -4,6 +4,7 @@ import useCustomForm from '../../hooks/useCustomForm';
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import { URL_HOST } from '../../urlHost'
+import { Link } from "react-router-dom";
 
 let initialValues = {
     name: '',
@@ -51,32 +52,33 @@ const RecipeSearchResults = (props) => {
               }
         })
       }
-
+      //Sets the form date to post to database. Divides total recipe quantities by the number of servings(food.recipe.yield)
       function setNutritionValues(food){
           formData.name = food.recipe.label
-          formData.cal = food.recipe.calories
-          formData.fat = food.recipe.totalNutrients.FAT.quantity
-          formData.carb = food.recipe.totalNutrients.CHOCDF.quantity
-          formData.sugar = food.recipe.totalNutrients.SUGAR.quantity
-          formData.fiber = food.recipe.totalNutrients.FIBTG.quantity
-          formData.protein = food.recipe.totalNutrients.PROCNT.quantity
+          formData.cal = (food.recipe.calories / food.recipe.yield)
+          formData.fat = (food.recipe.totalNutrients.FAT.quantity / food.recipe.yield)
+          formData.carb = (food.recipe.totalNutrients.CHOCDF.quantity / food.recipe.yield)
+          formData.sugar = (food.recipe.totalNutrients.SUGAR.quantity / food.recipe.yield)
+          formData.fiber = (food.recipe.totalNutrients.FIBTG.quantity / food.recipe.yield)
+          formData.protein = (food.recipe.totalNutrients.PROCNT.quantity / food.recipe.yield)
           formData.servings = food.recipe.yield
           formData.url = food.recipe.url
           saveFood()          
       }
 
         return ( 
-            <div>
-                <table>
+            <div className='w-80 btn-center'>
+                <table className="text-center table table-dark table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>Key</th>
-                            <th>Name</th>
-                            <th>Link</th>
-                            <th>Fats</th>
-                            <th>Protein</th>
-                            <th>Carbs</th>
-                            <th />
+                            <th className='col-4'>Name</th>
+                            <th className='col-1'>Total Cal</th>
+                            <th className='col-1'>Fats</th>
+                            <th className='col-1'>Protein</th>
+                            <th className='col-1'>Carbs</th>
+                            <th className='col-1'>Servings</th>
+                            <th className='col-2'>Link</th>
+                            <th className='col-1' />
                         </tr>
                     </thead>
                     <tbody>
@@ -85,13 +87,14 @@ const RecipeSearchResults = (props) => {
                                 let key = food.recipe.uri
                                 return(
                                     <tr key={key}>
-                                        <td>{food.recipe.uri}</td>
                                         <td>{food.recipe.label}</td>
-                                        <td>{food.recipe.url}</td>
-                                        <td>{food.recipe.totalNutrients.FAT.quantity}</td>
-                                        <td>{food.recipe.totalNutrients.PROCNT.quantity}</td>
-                                        <td>{food.recipe.totalNutrients.CHOCDF.quantity}</td>
-                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Add</button></td>
+                                        <td>{food.recipe.calories.toFixed(0)}</td>
+                                        <td>{food.recipe.totalNutrients.FAT.quantity.toFixed(0)}</td>
+                                        <td>{food.recipe.totalNutrients.PROCNT.quantity.toFixed(0)}</td>
+                                        <td>{food.recipe.totalNutrients.CHOCDF.quantity.toFixed(0)}</td>
+                                        <td>{food.recipe.yield}</td>
+                                        <td><a href={food.recipe.url} target="_blank">Jump to Recipe</a></td>
+                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
                                     </tr>
                                 )
                             })}
