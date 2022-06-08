@@ -9,6 +9,7 @@ import WaterEntry from "../../components/WaterEntry/WaterEntry";
 import WeightEntry from "../../components/WeightEntry/WeightEntry";
 import ExerciseEntry from "../../components/ExerciseEntry/ExerciseEntry";
 import { Link } from "react-router-dom";
+import TodaysFoods from "../../components/TodaysFoods/TodaysFoods";
 
 
 
@@ -29,7 +30,7 @@ const HomePage = (props) => {
           <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
         </div>
       </div>
-      <div className="container">
+      {/* <div className="container"> */}
         <div className="row" >
           <div className="col-3">
             <WaterEntry getDailyWater={props.getDailyWater}></WaterEntry>
@@ -41,6 +42,9 @@ const HomePage = (props) => {
             <ExerciseEntry></ExerciseEntry>
           </div>
         </div>
+      {/* </div> */}
+      <div>
+        {/* <TodaysFoods todaysFoods={props.todaysFoods} setTodaysFoods={props.setTodaysFoods} /> */}
       </div>
     </div>
   )

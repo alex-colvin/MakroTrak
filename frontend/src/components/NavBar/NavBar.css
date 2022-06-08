@@ -32,4 +32,5 @@ li {
 .brand {
   cursor: pointer;
   font-size: 2rem;
+  text-shadow: 3px 3px rgb(87, 31, 31);
 }

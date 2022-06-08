@@ -11,7 +11,7 @@ const DailyMacros = (props) => {
 
         useEffect(() => {
             console.log(`DM trigger${props.dailyWater}`)
-            setData([["Daily Goals",`Water ${props.dailyWater.toFixed(0)} of 100oz`,`Calories ${(props.dailyCals*2000/100).toFixed(0)} of 2000 cal`,`Fats ${(props.dailyFats*66/100).toFixed(0)} of 66g`,`Carbs ${(props.dailyCarbs*225/100).toFixed(0)} of 225g`,`Proteins ${(props.dailyProteins*122/100).toFixed(0)}g of 122g`], [' ',props.dailyWater, props.dailyCals, props.dailyFats, props.dailyCarbs, props.dailyProteins]])
+            setData([["Daily Goals",`Water ${props.dailyWater} of 100oz`,`Calories ${props.dailyCals*2000/100} of 2000 cal`,`Fats ${props.dailyFats*66/100} of 66g`,`Carbs ${props.dailyCarbs*225/100} of 225g`,`Proteins ${props.dailyProteins*122/100}g of 122g`], [' ',props.dailyWater, props.dailyCals, props.dailyFats, props.dailyCarbs, props.dailyProteins]])
           },[props.dailyCals, props.dailyFats, props.dailyProteins, props.dailyCarbs, props.dailyWater])
     
     const options = {

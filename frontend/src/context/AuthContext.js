@@ -59,13 +59,10 @@ export const AuthProvider = ({ children }) => {
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
         navigate("/");
-      } else {
-        navigate("/register");
-      }
+      } 
     } catch (error) {
       console.log(error.toJSON());
       setIsServerError(true);
-      navigate("/register");
     }
   };
 

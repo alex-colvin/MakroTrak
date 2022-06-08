@@ -11,12 +11,16 @@ const Navbar = () => {
     <div className="navBar">
       <ul>
         <li className="brand">
-          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/" style={{ textDecoration: "none", color: "white"  }}>
             <b>MakroTrak</b>
           </Link>
         </li>
         <li>
-        <button onClick={() => navigate("/addfood")}>AddFood</button>
+          {user ? (
+            <button onClick={() => navigate("/addfood")}>AddFood</button>
+          ) : (
+            null
+          )}
         </li>
         <li>
           {user ? (

@@ -45,6 +45,7 @@ function App() {
   const [dailyFats, setDailyFats] = useState();
   const [dailyProteins, setDailyProteins] = useState();
   const [dailyWater, setDailyWater] = useState();
+  const [todaysFoods, setTodaysFoods] = useState();
 
   useState(() =>{
     getDailyMacros()
@@ -128,7 +129,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
+              <HomePage todaysFoods={todaysFoods} setTodaysFoods={setTodaysFoods} getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
             </PrivateRoute>
           }
         />

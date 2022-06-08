@@ -4,7 +4,6 @@ import useCustomForm from '../../hooks/useCustomForm';
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import { URL_HOST } from '../../urlHost'
-import { Link } from "react-router-dom";
 
 let initialValues = {
     name: '',
@@ -18,13 +17,34 @@ let initialValues = {
     url: 'h',
 }
 
-const RecipeSearchResults = (props) => {
+const TodaysFoods = (props) => {
 
     const [user, token] = useAuth();
     const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
         initialValues,
         saveFood,
     );
+
+    async function getTodaysFoods(){
+        let date = new Date();
+        console.log(`getTodaysFoodsDate: ${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
+        let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+        try{
+          let response = await axios.get(`${URL_HOST}/foods/?date=${formatDate}`,{
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+            })
+          if(response.status === 200){
+            console.log(response.data)
+            props.setTodaysFoods(response.data)
+           }
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
+
+
     
     async function saveFood(){
         try{
@@ -35,7 +55,7 @@ const RecipeSearchResults = (props) => {
           })
           if(response.status === 201){
             trackFood(response.data.id)
-            reset() 
+            reset()
            }
         } catch (error) {
           console.log(error.message);
@@ -52,48 +72,44 @@ const RecipeSearchResults = (props) => {
               }
         })
       }
-      //Sets the form date to post to database. Divides total recipe quantities by the number of servings(food.recipe.yield)
+
       function setNutritionValues(food){
-          formData.name = food.recipe.label
-          formData.cal = (food.recipe.calories / food.recipe.yield)
-          formData.fat = (food.recipe.totalNutrients.FAT.quantity / food.recipe.yield)
-          formData.carb = (food.recipe.totalNutrients.CHOCDF.quantity / food.recipe.yield)
-          formData.sugar = (food.recipe.totalNutrients.SUGAR.quantity / food.recipe.yield)
-          formData.fiber = (food.recipe.totalNutrients.FIBTG.quantity / food.recipe.yield)
-          formData.protein = (food.recipe.totalNutrients.PROCNT.quantity / food.recipe.yield)
-          formData.servings = food.recipe.yield
-          formData.url = food.recipe.url
+          formData.name = food.name
+          formData.cal = food.cal
+          formData.fat = food.fat
+          formData.carb = food.carb
+          formData.sugar = food.sugar
+          formData.fiber = food.fiber
+          formData.protein = food.protein
+          formData.servings = food.servings
+          formData.url = food.url
           saveFood()          
       }
+
+      
 
         return ( 
             <div className='w-80 btn-center'>
                 <table className="text-center table table-dark table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th className='col-4'>Name</th>
-                            <th className='col-1'>Total Cal</th>
-                            <th className='col-1'>Fats</th>
-                            <th className='col-1'>Protein</th>
+                            <th className='col-5'>Name</th>
+                            <th className='col-2'>Fats</th>
+                            <th className='col-2'>Protein</th>
                             <th className='col-1'>Carbs</th>
-                            <th className='col-1'>Servings</th>
-                            <th className='col-2'>Link</th>
-                            <th className='col-1' />
+                            <th/>
                         </tr>
                     </thead>
                     <tbody>
-                        {props.searchResults &&
-                            props.searchResults.map((food) => {
-                                let key = food.recipe.uri
+                        {props.todaysFoods &&
+                            props.todaysFoods.map((food) => {
+                                let key = food.id
                                 return(
                                     <tr key={key}>
-                                        <td>{food.recipe.label}</td>
-                                        <td>{food.recipe.calories.toFixed(0)}</td>
-                                        <td>{food.recipe.totalNutrients.FAT.quantity.toFixed(0)}</td>
-                                        <td>{food.recipe.totalNutrients.PROCNT.quantity.toFixed(0)}</td>
-                                        <td>{food.recipe.totalNutrients.CHOCDF.quantity.toFixed(0)}</td>
-                                        <td>{food.recipe.yield}</td>
-                                        <td><a href={food.recipe.url} target="_blank">Jump to Recipe</a></td>
+                                        <td>{food.name}</td>
+                                        <td>{food.fat}</td>
+                                        <td>{food.protein}</td>
+                                        <td>{food.carb}</td>
                                         <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
                                     </tr>
                                 )
@@ -104,4 +120,4 @@ const RecipeSearchResults = (props) => {
         ) 
 }
  
-export default RecipeSearchResults;
+export default TodaysFoods;
