@@ -23,26 +23,31 @@ def user_consumed_foods(request):
 # This get method grabs the consumed foods for the logged in user on the current day, totals the macros, and delivers to the front end. 
     elif request.method == 'GET':
         date = datetime.datetime.now()
-        cals = 0
-        fats = 0
-        carbs = 0
-        proteins = 0
+        type_param = request.query_params.get('type')
         consumed_foods = ConsumedFood.objects.filter(user=request.user.id, date=date)
-        for food in consumed_foods:
-            cals += food.food.cal
-            fats += food.food.fat
-            carbs += food.food.carb
-            proteins += food.food.protein
-        #calculations for recommended macros based on a 2000 calorie diet
-        cals = round((cals/2000)*100)
-        fats = round((fats/66)*100)
-        carbs = round((carbs/225)*100)
-        proteins = round((proteins/125)*100)
-        print(cals, fats, carbs, proteins)
-        response = {"cals": cals, "fats": fats, "carbs": carbs, "proteins": proteins}
-        print(response['cals'])
-        serializer = ConsumedFoodSerializer(response, many=True)
-        return Response(response, status=status.HTTP_200_OK)
+        if type_param == 'all':
+            serializer = ConsumedFoodSerializer(consumed_foods, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:        
+            cals = 0
+            fats = 0
+            carbs = 0
+            proteins = 0
+            for food in consumed_foods:
+                cals += food.food.cal
+                fats += food.food.fat
+                carbs += food.food.carb
+                proteins += food.food.protein
+            #calculations for recommended macros based on a 2000 calorie diet
+            cals = round((cals/2000)*100)
+            fats = round((fats/66)*100)
+            carbs = round((carbs/225)*100)
+            proteins = round((proteins/125)*100)
+            print(cals, fats, carbs, proteins)
+            response = {"cals": cals, "fats": fats, "carbs": carbs, "proteins": proteins}
+            print(response['cals'])
+            serializer = ConsumedFoodSerializer(response, many=True)
+            return Response(response, status=status.HTTP_200_OK)
 
 @api_view(['PUT','DELETE'])
 @permission_classes([IsAuthenticated])

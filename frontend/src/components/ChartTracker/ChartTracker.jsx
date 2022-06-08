@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 const ChartTracker = (props) => {
   const [user, token] = useAuth();
-  const [data, setData] = useState([["Date", "Water Intake (oz)","Excercise Duration","Calorie Intake","Weight(lbs)"]]);
+  const [data, setData] = useState([["Date", "Water","Excercise Duration","Calories x10","Weight"]]);
 
   useState(() =>{
     props.getDailyTotals()
@@ -17,18 +17,19 @@ const ChartTracker = (props) => {
     if(props.chartData !== undefined && data.length <= 1){
       let tempTotals = [...data];
       let dailyTotals = props.chartData.map((el) => {
-      tempTotals.push([el.date, el.water, el.calories_burned, el.calories, el.weight])
+        let calories = (el.calories/10)
+      tempTotals.push([el.date, el.water, el.calories_burned, calories, el.weight])
       return [el.date, el.water, el.calories_burned, el.calories, el.weight]
       })
       setData(tempTotals)
-    }
+    } 
   },[props.chartData])  
 
   const options = {
     chart: {
       title: "Fitness Data Tracker",
     },
-    width: 500,
+    width: 600,
     height: 300,
     series: {
       // Gives each series an axis name that matches the Y-axis below.
@@ -45,7 +46,7 @@ const ChartTracker = (props) => {
         Calories: { label: "Calories" },
         Weight: { label: "Weight" },
       },
-    legend: "none"
+    legend:{position: 'none'}
     }
   }
   

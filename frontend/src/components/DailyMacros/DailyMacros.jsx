@@ -17,7 +17,7 @@ const DailyMacros = (props) => {
     const options = {
             title: "Daily Macros",
             hAxis: { title: "Daily Goals", viewWindow: { min: 0, max: 15 } },
-            vAxis: { title: "Percent Complete", viewWindow: { min: 0, max: 125 } },
+            vAxis: { title: "Percent Complete", viewWindow: { min: 100, max: 125 } },
             
     }
 

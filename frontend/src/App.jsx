@@ -50,6 +50,8 @@ function App() {
   useState(() =>{
     getDailyMacros()
     getDailyWater()
+    getTodaysFoods()
+    getDailyTotals()
     })
 
   async function saveFood(){
@@ -98,6 +100,22 @@ function App() {
           setDailyCarbs(response.data.carbs)
           setDailyFats(response.data.fats) 
           setDailyProteins(response.data.proteins)
+          setTodaysFoods(response.data)
+        } 
+      } catch (error) {
+          console.log(error.message)
+        }
+    }
+  async function getTodaysFoods() {
+    try{
+      console.log(URL_HOST)
+      let response = await axios.get(`${URL_HOST}/consumed_foods/?type=all`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+        if(response.status === 200){
+          setTodaysFoods(response.data)
         } 
       } catch (error) {
           console.log(error.message)
@@ -129,7 +147,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage todaysFoods={todaysFoods} setTodaysFoods={setTodaysFoods} getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
+              <HomePage todaysFoods={todaysFoods} getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
             </PrivateRoute>
           }
         />
