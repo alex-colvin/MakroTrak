@@ -5,85 +5,90 @@ import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import { URL_HOST } from '../../urlHost'
 
-let initialValues = {
-    name: '',
-    cal: '',
-    fat: '',
-    carb: '',
-    sugar: '',
-    fiber: '',
-    protein: '',
-    servings: '1',
-    url: 'h',
-}
+// let initialValues = {
+//     name: '',
+//     cal: '',
+//     fat: '',
+//     carb: '',
+//     sugar: '',
+//     fiber: '',
+//     protein: '',
+//     servings: '1',
+//     url: 'h',
+// }
 
 const TodaysFoods = (props) => {
 
     const [user, token] = useAuth();
-    const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
-        initialValues,
-        saveFood,
-    );
+    // const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
+    //     initialValues,
+    //     saveFood,
+    // );
 
-    async function getTodaysFoods(){
-        let date = new Date();
-        console.log(`getTodaysFoodsDate: ${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
-        let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
-        try{
-          let response = await axios.get(`${URL_HOST}/foods/?date=${formatDate}`,{
-            headers: {
-              Authorization: 'Bearer ' + token
-            }
-            })
-          if(response.status === 200){
-            console.log(response.data)
-            props.setTodaysFoods(response.data)
-           }
-        } catch (error) {
-          console.log(error.message);
-        }
-      }
+    // async function getTodaysFoods(){
+    //     let date = new Date();
+    //     console.log(`getTodaysFoodsDate: ${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
+    //     let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+    //     try{
+    //       let response = await axios.get(`${URL_HOST}/foods/?date=${formatDate}`,{
+    //         headers: {
+    //           Authorization: 'Bearer ' + token
+    //         }
+    //         })
+    //       if(response.status === 200){
+    //         console.log(response.data)
+    //         props.setTodaysFoods(response.data)
+    //        }
+    //     } catch (error) {
+    //       console.log(error.message);
+    //     }
+    //   }
 
 
     
-    async function saveFood(){
-        try{
-          let response = await axios.post(`${URL_HOST}/foods/`, formData, {
-            headers: {
-              Authorization: 'Bearer ' + token
-            }
-          })
-          if(response.status === 201){
-            trackFood(response.data.id)
-            reset()
-           }
-        } catch (error) {
-          console.log(error.message);
-        }
-      }
+    // async function saveFood(){
+    //     try{
+    //       let response = await axios.post(`${URL_HOST}/foods/`, formData, {
+    //         headers: {
+    //           Authorization: 'Bearer ' + token
+    //         }
+    //       })
+    //       if(response.status === 201){
+    //         trackFood(response.data.id)
+    //         reset()
+    //        }
+    //     } catch (error) {
+    //       console.log(error.message);
+    //     }
+    //   }
 
-      async function trackFood(foodId){
-        let date = new Date();
-        console.log(`${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
-        let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
-        let response = await axios.post(`${URL_HOST}/consumed_foods/`, {"food_id": foodId, "date": formatDate}, {
-            headers: {
-                Authorization: 'Bearer ' + token
-              }
-        })
-      }
+    //   async function trackFood(foodId){
+    //     let date = new Date();
+    //     console.log(`${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`);
+    //     let formatDate = (`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`);
+    //     let response = await axios.post(`${URL_HOST}/consumed_foods/`, {"food_id": foodId, "date": formatDate}, {
+    //         headers: {
+    //             Authorization: 'Bearer ' + token
+    //           }
+    //     })
+    //   }
 
-      function setNutritionValues(food){
-          formData.name = food.name
-          formData.cal = food.cal
-          formData.fat = food.fat
-          formData.carb = food.carb
-          formData.sugar = food.sugar
-          formData.fiber = food.fiber
-          formData.protein = food.protein
-          formData.servings = food.servings
-          formData.url = food.url
-          saveFood()          
+    //   function setNutritionValues(food){
+    //       formData.name = food.name
+    //       formData.cal = food.cal
+    //       formData.fat = food.fat
+    //       formData.carb = food.carb
+    //       formData.sugar = food.sugar
+    //       formData.fiber = food.fiber
+    //       formData.protein = food.protein
+    //       formData.servings = food.servings
+    //       formData.url = food.url
+    //       saveFood()          
+    //   }
+
+  async function deleteFood(id) {
+        console.log(`deleted food id: ${id}`)
+        props.deleteFood(id)
       }
 
       
@@ -106,11 +111,11 @@ const TodaysFoods = (props) => {
                                 let key = food.id
                                 return(
                                     <tr key={key}>
-                                        <td>{food.name}</td>
-                                        <td>{food.fat}</td>
-                                        <td>{food.protein}</td>
-                                        <td>{food.carb}</td>
-                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
+                                        <td>{food.food.name}</td>
+                                        <td>{food.food.fat}</td>
+                                        <td>{food.food.protein}</td>
+                                        <td>{food.food.carb}</td>
+                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => props.deleteFoodEntry(food.id)}>Delete</button></td>
                                     </tr>
                                 )
                             })}

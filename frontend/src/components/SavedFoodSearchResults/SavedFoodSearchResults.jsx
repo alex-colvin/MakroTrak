@@ -86,9 +86,9 @@ const SavedFoodSearchResults = (props) => {
                                 return(
                                     <tr key={key}>
                                         <td>{food.name}</td>
-                                        <td>{food.fat}</td>
-                                        <td>{food.protein}</td>
-                                        <td>{food.carb}</td>
+                                        <td>{food.fat.toFixed(0)}</td>
+                                        <td>{food.protein.toFixed(0)}</td>
+                                        <td>{food.carb.toFixed(0)}</td>
                                         <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
                                     </tr>
                                 )

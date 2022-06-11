@@ -70,12 +70,12 @@ const SearchResults = (props) => {
                 <table className="text-center table table-dark table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th className='col-5'>Name</th>
-                            <th className='col-3'>Brand</th>
+                            <th className='col-4'>Name</th>
+                            <th className='col-2'>Brand</th>
                             <th className='col-2'>Fats</th>
                             <th className='col-2'>Protein</th>
                             <th className='col-1'>Carbs</th>
-                            <th/>
+                            <th className='col-1' />
                         </tr>
                     </thead>
                     <tbody>
@@ -86,9 +86,9 @@ const SearchResults = (props) => {
                                     <tr key={key}>
                                         <td>{food.description}</td>
                                         <td>{food.brandName}</td>
-                                        <td>{food.foodNutrients[1].value}</td>
-                                        <td>{food.foodNutrients[0].value}</td>
-                                        <td>{food.foodNutrients[2].value}</td>
+                                            <td>{food.foodNutrients[1] !== undefined ? `${food.foodNutrients[1].value}` : 'No Data'}</td>
+                                            <td>{food.foodNutrients[0] !== undefined ? `${food.foodNutrients[0].value}` : 'No Data'}</td>
+                                            <td>{food.foodNutrients[2] !== undefined ? `${food.foodNutrients[2].value}` : 'No Data'}</td>
                                         <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => setNutritionValues(food)}>Track</button></td>
                                     </tr>
                                 )

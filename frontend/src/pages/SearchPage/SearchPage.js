@@ -21,10 +21,10 @@ const SearchPage = (props) => {
                     <SearchFoodForm setSearchResults={setSearchFoodResults} setSearchRecipeResults={setSearchRecipeResults} setSearchSavedResults={setSearchSavedResults}/>
                 </div>
                 <div className="col">
-                    <SearchSavedFoodForm setSearchResults={setSearchFoodResults} setSearchRecipeResults={setSearchRecipeResults} setSearchSavedResults={setSearchSavedResults}/>
+                    <SearchRecipeForm setSearchResults={setSearchFoodResults} setSearchRecipeResults={setSearchRecipeResults} setSearchSavedResults={setSearchSavedResults}/>
                 </div>
                 <div className="col">
-                    <SearchRecipeForm setSearchResults={setSearchFoodResults} setSearchRecipeResults={setSearchRecipeResults} setSearchSavedResults={setSearchSavedResults}/>
+                    <SearchSavedFoodForm setSearchResults={setSearchFoodResults} setSearchRecipeResults={setSearchRecipeResults} setSearchSavedResults={setSearchSavedResults}/>
                 </div>
             </div>
             {searchFoodResults &&        

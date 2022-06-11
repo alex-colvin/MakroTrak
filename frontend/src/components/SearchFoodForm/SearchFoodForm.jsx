@@ -36,7 +36,7 @@ const SearchFoodForm = (props) => {
             props.setSearchResults(response.data.foods)
             props.setSearchRecipeResults('')
             props.setSearchSavedResults('')
-            setSearchQuery('ref')
+            setSearchQuery('')
            }
         } catch (error) {
           console.log(error.message);

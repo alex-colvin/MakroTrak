@@ -50,6 +50,8 @@ function App() {
   useState(() =>{
     getDailyMacros()
     getDailyWater()
+    getTodaysFoods()
+    getDailyTotals()
     })
 
   async function saveFood(){
@@ -103,10 +105,25 @@ function App() {
           console.log(error.message)
         }
     }
+  async function getTodaysFoods() {
+    try{
+      console.log(URL_HOST)
+      let response = await axios.get(`${URL_HOST}/consumed_foods/?type=all`, {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+        if(response.status === 200){
+          setTodaysFoods(response.data)
+          console.log(`todays foods: ${response.data}`)
+        } 
+      } catch (error) {
+          console.log(error.message)
+        }
+    }
     
   async function getDailyWater() {
     try{
-      console.log(URL_HOST)
       let response = await axios.get(`${URL_HOST}/water/`, {
         headers: {
           Authorization: 'Bearer ' + token
@@ -116,10 +133,26 @@ function App() {
           console.log(`water ${response.data.ounces}`)
           setDailyWater(response.data.ounces)
         }
-  } catch (error) {
-    console.log(error.message)
+        } catch (error) {
+          console.log(error.message)
+        }
   }
-}
+
+  async function deleteFoodEntry(id) {
+    try{
+      let response = await axios.delete(`${URL_HOST}/consumed_foods/${id}/`,{
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+        if(response.status === 204){
+          console.log(`deleted food id: ${id}`)
+          getTodaysFoods()
+        }
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
 
   return (
     <div>
@@ -129,7 +162,7 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage todaysFoods={todaysFoods} setTodaysFoods={setTodaysFoods} getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
+              <HomePage deleteFoodEntry={deleteFoodEntry} todaysFoods={todaysFoods} getDailyTotals={getDailyTotals} chartData={chartData} setChartData={setChartData} dailyCals={dailyCals} dailyCarbs={dailyCarbs} dailyFats={dailyFats} dailyProteins ={dailyProteins} dailyWater={dailyWater} getDailyWater={getDailyWater}/>
             </PrivateRoute>
           }
         />

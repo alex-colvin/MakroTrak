@@ -19,16 +19,22 @@ const HomePage = (props) => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
 
+  useEffect(() => {
+    console.log(`ChartTracker Trigger ${props.chartData}`)
+  },[props.chartData])
+
 
   return(
     <div className="container">
       <div className="row">
-        <div  className="col-6">
-          <DailyMacros dailyCals={props.dailyCals} dailyCarbs={props.dailyCarbs} dailyFats={props.dailyFats} dailyProteins ={props.dailyProteins} dailyWater={props.dailyWater} />
-        </div>
-        <div  className="col-6">
-          <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
-        </div>
+          <div  className="col-6">
+            <DailyMacros dailyCals={props.dailyCals} dailyCarbs={props.dailyCarbs} dailyFats={props.dailyFats} dailyProteins ={props.dailyProteins} dailyWater={props.dailyWater} />
+          </div>
+          {props.chartData !== undefined &&
+            <div  className="col-6">
+              <ChartTracker className="col" getDailyTotals={props.getDailyTotals} chartData={props.chartData} setChartData={props.setChartData} />
+            </div>
+          }
       </div>
       {/* <div className="container"> */}
         <div className="row" >
@@ -42,10 +48,11 @@ const HomePage = (props) => {
             <ExerciseEntry></ExerciseEntry>
           </div>
         </div>
-      {/* </div> */}
-      <div>
-        {/* <TodaysFoods todaysFoods={props.todaysFoods} setTodaysFoods={props.setTodaysFoods} /> */}
-      </div>
+      {props.todaysFoods !== undefined &&
+        <div>
+          <TodaysFoods deleteFoodEntry={props.deleteFoodEntry} todaysFoods={props.todaysFoods} />
+        </div>
+      }
     </div>
   )
 };
