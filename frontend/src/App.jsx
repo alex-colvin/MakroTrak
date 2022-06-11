@@ -148,6 +148,7 @@ function App() {
         if(response.status === 204){
           console.log(`deleted food id: ${id}`)
           getTodaysFoods()
+          getDailyMacros()
         }
     } catch (error) {
       console.log(error.message)
