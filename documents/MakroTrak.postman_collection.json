@@ -12,7 +12,43 @@
 					"name": "Get_All_Foods",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0ODg4MTg0LCJpYXQiOjE2NTQwMjQxODQsImp0aSI6IjRmZmVkMjRmMDgwYTRmNGFiYmQ4NTE5ZDFjYzM3MTg5IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.pdrU6Bp6QHGY4fLr1TWosZvIG5otQ2e6wnlL0BMWzFU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/foods/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"foods",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_All_Foods (query)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0ODg4MTg0LCJpYXQiOjE2NTQwMjQxODQsImp0aSI6IjRmZmVkMjRmMDgwYTRmNGFiYmQ4NTE5ZDFjYzM3MTg5IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.pdrU6Bp6QHGY4fLr1TWosZvIG5otQ2e6wnlL0BMWzFU",
+								"type": "default"
+							}
+						],
 						"url": {
 							"raw": "http://127.0.0.1:8000/api/foods/",
 							"protocol": "http",
@@ -36,7 +72,22 @@
 					"name": "Create_Food",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0ODg4NjAwLCJpYXQiOjE2NTQwMjQ2MDAsImp0aSI6IjE5OTEzOTY3NThjMTRkNjZhMGYyYjc5NDc1ZjNjM2FiIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.APNFIIBIyNtR3agIuMOlOnaXIjySS_wynj1TTclqiTk",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"name\": \"Waffle Fruit\",\r\n        \"cal\": 2,\r\n        \"fat\": 2,\r\n        \"carb\": 2,\r\n        \"sugar\": 2,\r\n        \"fiber\": 2,\r\n        \"protein\": 2,\r\n        \"servings\": 1,\r\n        \"url\": \"\",\r\n        \"user_id\": 2\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://127.0.0.1:8000/api/foods/",
 							"protocol": "http",
@@ -553,7 +604,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MDcyLCJpYXQiOjE2NTM2NjUwNzIsImp0aSI6ImViMWNkOWI1OWY3MTRjNDVhNWU5Yzk4Y2M3YjAzZmFhIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.9PJCg4sXW5K0wXczFflR3I9fVRJagIwWrNRbckIG7mk",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQ5NzIwLCJpYXQiOjE2NTQ2ODU3MjAsImp0aSI6ImExMDY1MzM3ZWJiOTRlYTM4Y2E1NTZhM2MzNTI2Y2ZkIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJhbGV4IiwiZmlyc3RfbmFtZSI6ImFsZXgifQ.nutUWxGO5a3GeEbYZtmhyqFhmT8HeJ-U45sqWqzgj4Y",
 								"type": "default"
 							}
 						],
@@ -583,13 +634,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQ5NzIwLCJpYXQiOjE2NTQ2ODU3MjAsImp0aSI6ImExMDY1MzM3ZWJiOTRlYTM4Y2E1NTZhM2MzNTI2Y2ZkIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJhbGV4IiwiZmlyc3RfbmFtZSI6ImFsZXgifQ.nutUWxGO5a3GeEbYZtmhyqFhmT8HeJ-U45sqWqzgj4Y",
 								"type": "default"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"food_id\": 4,\r\n    \"date\": \"2022-05-26\"\r\n}",
+							"raw": "{\r\n    \"food_id\": 4,\r\n    \"date\": \"2022-06-08\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -656,18 +707,27 @@
 					"response": []
 				},
 				{
-					"name": "Delete_Water_Entry",
+					"name": "Delete_Consumed_Food_Entry",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU0NTI5MjA4LCJpYXQiOjE2NTM2NjUyMDgsImp0aSI6IjU3ODNlY2Q3ZDU4MzQ3MjNiNmVhMjliZTQyNzNlOTc1IiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jTt4TTh83nvslQ-HtyDt7v8AD9lmmCWcjdtzK2puPgk",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTAzNjg5LCJpYXQiOjE2NTQ2Mzk2ODksImp0aSI6ImVjYTBlMDg3ODFkZDRjZjY4ZGE1ZGJjNDcwZWRmZDE2IiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJhbGV4IiwiZmlyc3RfbmFtZSI6ImFsZXgifQ.yZu4HsuHDT72KHG5S-krqKrhxqUtd9Is8zr92-IViJw",
 								"type": "default"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ounces\": 5,\r\n    \"date\": \"2022-05-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/api/consumed_foods/2/",
+							"raw": "http://127.0.0.1:8000/api/consumed_foods/31/",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -679,8 +739,56 @@
 							"path": [
 								"api",
 								"consumed_foods",
-								"2",
+								"31",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_Todays_Consumed_Foods",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjU1NTQ5NzIwLCJpYXQiOjE2NTQ2ODU3MjAsImp0aSI6ImExMDY1MzM3ZWJiOTRlYTM4Y2E1NTZhM2MzNTI2Y2ZkIiwidXNlcl9pZCI6MywidXNlcm5hbWUiOiJhbGV4IiwiZmlyc3RfbmFtZSI6ImFsZXgifQ.nutUWxGO5a3GeEbYZtmhyqFhmT8HeJ-U45sqWqzgj4Y",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"food_id\": 4,\r\n    \"date\": \"2022-05-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/consumed_foods/?type=all",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"consumed_foods",
+								""
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "all"
+								}
 							]
 						}
 					},
@@ -877,7 +985,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"dantheman\",\r\n    \"password\": \"password1@\"\r\n}",
+							"raw": "{\r\n    \"username\": \"\",\r\n    \"password\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
