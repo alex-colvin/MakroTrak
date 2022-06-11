@@ -48,11 +48,11 @@ const HomePage = (props) => {
             <ExerciseEntry></ExerciseEntry>
           </div>
         </div>
-      {/* {props.todaysFoods !== undefined &&
+      {props.todaysFoods !== undefined &&
         <div>
-          <TodaysFoods todaysFoods={props.todaysFoods} />
+          <TodaysFoods deleteFoodEntry={props.deleteFoodEntry} todaysFoods={props.todaysFoods} />
         </div>
-      } */}
+      }
     </div>
   )
 };

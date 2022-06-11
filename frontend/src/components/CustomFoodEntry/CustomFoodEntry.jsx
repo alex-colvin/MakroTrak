@@ -16,7 +16,7 @@ let initialValues = {
     sugar: '',
     fiber: '',
     protein: '',
-    servings: '1',
+    servings: '',
     url: 'h',
 };
 

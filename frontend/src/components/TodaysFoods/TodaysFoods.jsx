@@ -88,6 +88,7 @@ const TodaysFoods = (props) => {
 
   async function deleteFood(id) {
         console.log(`deleted food id: ${id}`)
+        props.deleteFood(id)
       }
 
       
@@ -114,7 +115,7 @@ const TodaysFoods = (props) => {
                                         <td>{food.food.fat}</td>
                                         <td>{food.food.protein}</td>
                                         <td>{food.food.carb}</td>
-                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => deleteFood(food.id)}>Track</button></td>
+                                        <td><button className="btn btn-secondary btn-sm btn-center" onClick={() => props.deleteFoodEntry(food.id)}>Delete</button></td>
                                     </tr>
                                 )
                             })}

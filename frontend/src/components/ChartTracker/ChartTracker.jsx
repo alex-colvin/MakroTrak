@@ -7,7 +7,7 @@ import useAuth from "../../hooks/useAuth";
 
 const ChartTracker = (props) => {
   const [user, token] = useAuth();
-  const [data, setData] = useState([["Date", "Water","Excercise Duration","Calories x10","Weight"]]);
+  const [data, setData] = useState([["Date", "Water","Cals in x10","Cals Out","Weight"]]);
 
   useState(() =>{
     props.getDailyTotals()
@@ -18,7 +18,7 @@ const ChartTracker = (props) => {
       let tempTotals = [...data];
       let dailyTotals = props.chartData.map((el) => {
         let calories = (el.calories/10)
-      tempTotals.push([el.date, el.water, el.calories_burned, calories, el.weight])
+      tempTotals.push([el.date, el.water, calories, el.calories_burned, el.weight])
       return [el.date, el.water, el.calories_burned, el.calories, el.weight]
       })
       setData(tempTotals)
@@ -54,8 +54,10 @@ const ChartTracker = (props) => {
 
     return ( 
         <div>
+          <h2>Historical Data</h2>
             <Chart
                 chartType="LineChart"
+                title="Historical Data"
                 data={data}
                 options={options}
                 width="100%"
